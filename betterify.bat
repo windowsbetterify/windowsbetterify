@@ -38,6 +38,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCorta
 
 :: Disabling Oklomsy Brrr mark
 echo Disabling Watermark
+slmgr /ato
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "PaintDesktopVersion" /t REG_DWORD /d 0 /f > NUL 2>&1
 sc config sppsvc start=disabled
 
@@ -52,6 +53,9 @@ sc config RetailDemo start=disabled
 PowerShell -Command "Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force"
 sc config lanmanworkstation depend=bowser/mrxsmb20/nsi
 sc config mrxsmb10 start=disabled
+
+:: Disable Timeline
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableActivityFeed" /t REG_DWORD /d 0 /f > NUL 2>&1
 
 :: Disable + Delete Tasks
 echo Disabling tasks and Windows Updates...
@@ -103,7 +107,9 @@ echo 0.0.0.0	feedback.search.microsoft.com >> %WINDIR%\System32\drivers\etc\host
 echo 0.0.0.0	feedback.microsoft-hohm.com >> %WINDIR%\System32\drivers\etc\hosts
 
 :: Deleting all apps except store
-echo Deleting all apps except store
+echo Deleting all bad apps except store
 PowerShell -Command "Get-AppxPackage -AllUsers | where-object {$_.name –notlike '*store*'} | Remove-AppxPackage"
 takeown /f "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 del "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+takeown /f "%WINDIR%\System32\smartscreen.exe"
+del "%WINDIR%\System32\smartscreen.exe"
