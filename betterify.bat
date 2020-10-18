@@ -4,7 +4,7 @@ if %errorlevel%==0 (
         echo Admin found. Thank you for using Windows 10 Betterify.
         echo Version 0.5a
         echo Warning: This action is irreversable!
-        echo This will destroy stuff most people might want, including Windows Update.
+        echo This will destroy stuff most people might want, including Windows Update, as well as Edge.
         echo And also, this will install FOSS alternatives.
         echo If you do not want this, press the red x NOW. Otherwise...
         pause
@@ -13,6 +13,7 @@ if %errorlevel%==0 (
         echo This means this software is in alpha forever.
         echo Also, speaking of which, we are not responsible for any bad things that might happen.
         echo This includes, but is not limited to, data loss, as well as any destruction, physical, mental, software, or any other damage is not our fault!
+        echo TLDR, this script comes without any warranty. 
         echo Remember, press the RED X to close this Window, otherwise...
         pause
 ) else (
@@ -104,3 +105,5 @@ echo 0.0.0.0	feedback.microsoft-hohm.com >> %WINDIR%\System32\drivers\etc\hosts
 :: Deleting all apps except store
 echo Deleting all apps except store
 PowerShell -Command "Get-AppxPackage -AllUsers | where-object {$_.name –notlike '*store*'} | Remove-AppxPackage"
+takeown /f "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+del "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
