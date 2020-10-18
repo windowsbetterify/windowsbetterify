@@ -64,8 +64,9 @@ net stop wuauserv
 sc config wuauserv start=disabled
 
 :: Installing alternative apps
+echo Installing alternative apps, as well as .NET 3.5
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
-@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vlc 7zip open-shell jpegview vcredist-all directx firefox obs onlyoffice"
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vlc 7zip open-shell irfanview vcredist-all directx firefox obs onlyoffice dotnet3.5"
 
 :: Disable Telemetry
 echo Disabling Telemetry...
