@@ -1,3 +1,29 @@
+echo Check for admin...
+openfiles > NUL 2>&1
+if %errorlevel%==0 (
+        echo Admin found. Thank you for using Windows 10 Betterify.
+        echo Version 0.5a
+        echo Warning: This action is irreversable!
+        echo This will destroy stuff most people might want, including Windows Update.
+        echo And also, this will install FOSS alternatives.
+        echo If you do not want this, press the red x NOW. Otherwise...
+        pause
+        echo ARE YOU SURE?
+        echo I forgot to also warn you this software is in prepetual Alpha!
+        echo This means this software is in alpha forever.
+        echo Also, speaking of which, we are not responsible for any bad things that might happen.
+        echo This includes, but is not limited to, data loss, as well as any destruction, physical, mental, software, or any other damage is not our fault!
+        echo Remember, press the RED X to close this Window, otherwise...
+        pause
+) else (
+        echo Please run as admin.
+        pause
+        exit
+)
+
+cls
+
+
 :: Bringing back F8 menu
 echo Bringing back the F8 menu...
 bcdedit /set {default} bootmenupolicy legacy
@@ -10,7 +36,7 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "SearchboxTas
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d 0 /f > NUL 2>&1
 
 :: Disabling Oklomsy Brrr mark
-echo Disabling Windows Watermark
+echo Disabling Watermark
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "PaintDesktopVersion" /t REG_DWORD /d 0 /f > NUL 2>&1
 sc config sppsvc start=disabled
 
