@@ -1,4 +1,5 @@
 @echo off
+title Windows 10 Betterify by Windows10Better Team
 echo Check for admin...
 openfiles > NUL 2>&1
 if %errorlevel%==0 (
