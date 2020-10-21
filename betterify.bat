@@ -131,12 +131,12 @@ powercfg /h off
 
 :: Deleting all apps except store and XBOX
 echo Deleting all bad apps except store and XBOX
-PowerShell -Command "Get-AppxPackage -AllUsers | where-object {$_.name –notlike '*store*'} | where-object {$_.name –notlike '*xbox*'} | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage | where-object {$_.name –notlike '*store*'} | where-object {$_.name –notlike '*xbox*'} | Remove-AppxPackage"
 takeown /f "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 del "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 takeown /f "%WINDIR%\System32\smartscreen.exe"
 del "%WINDIR%\System32\smartscreen.exe"
+:: Backup plan, just in case.
 PowerShell -Command "Get-AppxPackage *FeedbackHub* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *MixedRealityPortal* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Microsoft.Caclulator* | Remove-AppxPackage"
