@@ -53,7 +53,14 @@ sc config diagtrack start=disabled
 sc config RetailDemo start=disabled
 PowerShell -Command "Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force"
 sc config lanmanworkstation depend=bowser/mrxsmb20/nsi
+sc config TrkWks start=disabled
+sc config WbioSrvc start=disabled
+sc config WMPNetworkSvc start=disabled
+sc config wscsvc start=disabled
 sc config mrxsmb10 start=disabled
+sc config MapsBroker start=disabled
+sc config RetailDemo start=disabled
+sc config DiagTrack start=disabled
 
 :: Disable Timeline
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableActivityFeed" /t REG_DWORD /d 0 /f > NUL 2>&1
@@ -67,7 +74,7 @@ sc config wuauserv start=disabled
 :: Installing alternative apps
 echo Installing alternative apps, as well as .NET 3.5
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
-@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vlc 7zip open-shell irfanview vcredist-all directx firefox obs onlyoffice dotnet3.5"
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vlc 7zip open-shell irfanview vcredist-all directx firefox obs onlyoffice dotnet3.5 git"
 
 :: Disable Telemetry
 echo Disabling Telemetry...
@@ -78,8 +85,12 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersio
 echo Applying Registry Edits
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" /v DontSendAdditionalData /t REG_DWORD /d 1 /f > NUL 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v HideSCAHealth /t REG_DWORD /d 0x1 /f > NUL 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v DisableWebSearch /t REG_DWORD /d 1 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowIndexingEncryptedStoresOrItems /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowSearchToUseLocation /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v ConnectedSearchUseWeb /t REG_DWORD /d 0 /f > NUL 2>&1
+reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v UseActionCenterExperience /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowIndexingEncryptedStoresOrItems /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowSearchToUseLocation /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AlwaysUseAutoLangDetection /t REG_DWORD /d 0 /f > NUL 2>&1
@@ -89,29 +100,70 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtra
 :: Editing HOSTS
 echo Editing HOSTS
 echo. > %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	a-0001.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	a-0002.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	a-0003.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	a-0004.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	a-0005.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	a-0006.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	a-0007.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	a-0008.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	a-0009.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	ads.mopub.com >> %WINDIR%\System32\drivers\etc\hosts
 echo 0.0.0.0	ads.msn.com >> %WINDIR%\System32\drivers\etc\hosts
 echo 0.0.0.0	ads.msn.com >> %WINDIR%\System32\drivers\etc\hosts
 echo 0.0.0.0	ads.msn.com >> %WINDIR%\System32\drivers\etc\hosts
 echo 0.0.0.0	telemetry.microsoft.com >> %WINDIR%\System32\drivers\etc\hosts
 echo 0.0.0.0	akamaiedge.net >> %WINDIR%\System32\drivers\etc\hosts
-echo 0.0.0.0	feedback.windows.com >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	a-0005.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	a-0006.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	a-0007.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
 echo 0.0.0.0	feedback.search.microsoft.com >> %WINDIR%\System32\drivers\etc\hosts
 echo 0.0.0.0	feedback.microsoft-hohm.com >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	footprintpredict.com >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	statsfe2.update.microsoft.com.akadns.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	fe2.update.microsoft.com.akadns.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	a-0001.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	a-0002.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	a-0003.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	a-0004.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	feedback.windows.com >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	pre.footprintpredict.com >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	a-0008.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	a-0009.a-msedge.net >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	ads.mopub.com >> %WINDIR%\System32\drivers\etc\hosts
+echo 0.0.0.0	sls.update.microsoft.com.akadns.net >> %WINDIR%\System32\drivers\etc\hosts
+takeown /f "%WINDIR%\System32\drivers\etc\hosts"
+attrib +R %WINDIR%\System32\drivers\etc\hosts
 
-:: Deleting all apps except store
-echo Deleting all bad apps except store
-PowerShell -Command "Get-AppxPackage -AllUsers | where-object {$_.name –notlike '*store*'} | Remove-AppxPackage"
+:: Disable Hibernation, to make NTFS available in other OSes
+powercfg /h off
+
+:: Deleting all apps except store and XBOX
+echo Deleting all bad apps except store and XBOX
+PowerShell -Command "Get-AppxPackage -AllUsers | where-object {$_.name –notlike '*store*'} | where-object {$_.name –notlike '*xbox*'} | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage | where-object {$_.name –notlike '*store*'} | where-object {$_.name –notlike '*xbox*'} | Remove-AppxPackage"
 takeown /f "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 del "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 takeown /f "%WINDIR%\System32\smartscreen.exe"
 del "%WINDIR%\System32\smartscreen.exe"
+PowerShell -Command "Get-AppxPackage *FeedbackHub* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *MixedRealityPortal* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Microsoft.Caclulator* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Microsoft.WindowsAlarms* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Microsoft.GetHelp* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Microsoft.* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsCamera* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *bing* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *people* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsPhone* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *zune* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsCalculator* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsMaps* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Sway* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *MicrosoftOfficeHub* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *OneNote* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *solit* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Microsoft.Messaging* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Getstarted* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *Microsoft.OneConnect* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsAlarms* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *3DBuilder* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *WindowsSoundRecorder* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *CommsPhone* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *ConnectivityStore* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *AppInstaller* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *photos* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *SkypeApp* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage *ContentDeliveryManager* | Remove-AppxPackage"
