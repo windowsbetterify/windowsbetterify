@@ -4,7 +4,7 @@ echo Check for admin...
 openfiles > NUL 2>&1
 if %errorlevel%==0 (
         echo Admin found. Thank you for using Windows 10 Betterify.
-        echo Version 0.51a
+        echo Version 0.52a
         echo Warning: This action is irreversable!
         echo This will destroy stuff most people might want, including Windows Update, as well as Edge.
         echo And also, this will install FOSS alternatives.
