@@ -76,6 +76,9 @@ sc config wuauserv start=disabled
 echo Installing alternative apps, as well as .NET 3.5
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vlc 7zip open-shell irfanview vcredist-all directx waterfox obs onlyoffice dotnet3.5 git"
+echo Install BitDefender
+PowerShell -Command "Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/bp/agent/en-us/bitdefender_online.exe" -OutFile $env:USERPROFILE\Downloads\bitdefender.exe"
+PowerShell -Command "~/Downloads/bitdefender.exe"
 
 :: Disable Telemetry
 echo Disabling Telemetry...
@@ -191,10 +194,6 @@ PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\Cu
 :: Disable tailored experience
 echo Disable tailored experiences
 reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v DisableTailoredExperiencesWithDiagnosticData /t REG_DWORD /d 1 /f > NUL 2>&1
-
-:: Install BitDefender
-PowerShell -Command "Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/bp/agent/en-us/bitdefender_online.exe" -OutFile $env:USERPROFILE\Downloads\bitdefender.exe"
-PowerShell -Command "~/Downloads/bitdefender.exe"
 
 :: Install Windows XP Paint, as an easter egg.
 PowerShell -Command "Invoke-WebRequest -Uri "https://github.com/windows10better/xppaint/blob/main/xppaint.exe?raw=true" -OutFile $WINDIR\xppaint.exe"
