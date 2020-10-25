@@ -81,12 +81,12 @@ echo Installing alternative apps, as well as .NET 3.5
 echo Disabling Telemetry...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f > NUL 2>&1
-PowerShell -Command 'Disable-ScheduledTask -TaskName "Microsoft\Windows\Application Experience\ProgramDataUpdater" | Out-Null'
-PowerShell -Command 'Disable-ScheduledTask -TaskName "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" | Out-Null'
-PowerShell -Command 'Disable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\Consolidator" | Out-Null'
-PowerShell -Command 'Disable-ScheduledTask -TaskName "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" | Out-Null'
-PowerShell -Command 'Disable-ScheduledTask -TaskName "Microsoft\Windows\Autochk\Proxy" | Out-Null'
-PowerShell -Command 'Disable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" | Out-Null'
+PowerShell -Command "Disable-ScheduledTask -TaskName "Microsoft\Windows\Application Experience\ProgramDataUpdater" | Out-Null"
+PowerShell -Command "Disable-ScheduledTask -TaskName "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" | Out-Null"
+PowerShell -Command "Disable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\Consolidator" | Out-Null"
+PowerShell -Command "Disable-ScheduledTask -TaskName "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" | Out-Null"
+PowerShell -Command "Disable-ScheduledTask -TaskName "Microsoft\Windows\Autochk\Proxy" | Out-Null"
+PowerShell -Command "Disable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" | Out-Null"
 
 :: RegEdits
 echo Applying Registry Edits
@@ -138,7 +138,7 @@ powercfg /h off
 
 :: Deleting all apps except store and XBOX
 echo Deleting all bad apps except store and XBOX
-PowerShell -Command "Get-AppxPackage | where-object {$_.name –notlike '*store*'} | where-object {$_.name –notlike '*xbox*'} | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage | where-object {$_.name –notlike "*store*"} | where-object {$_.name –notlike "*xbox*"} | Remove-AppxPackage"
 takeown /f "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 del "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 takeown /f "%WINDIR%\System32\smartscreen.exe"
@@ -177,27 +177,27 @@ PowerShell -Command "Get-AppxPackage *ContentDeliveryManager* | Remove-AppxPacka
 
 :: Disable app suggestions
 echo Disabling app suggestions
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "OemPreInstalledAppsEnabled" -Type DWord -Value 0'
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-353698Enabled" -Type DWord -Value 0'
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0'
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "PreInstalledAppsEnabled" -Type DWord -Value 0'
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "ContentDeliveryAllowed" -Type DWord -Value 0'
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "PreInstalledAppsEverEnabled" -Type DWord -Value 0'
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SilentInstalledAppsEnabled" -Type DWord -Value 0'
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338387Enabled" -Type DWord -Value 0'
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338388Enabled" -Type DWord -Value 0'
-PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338389Enabled" -Type DWord -Value 0'
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "OemPreInstalledAppsEnabled" -Type DWord -Value 0"
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-353698Enabled" -Type DWord -Value 0"
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0"
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "PreInstalledAppsEnabled" -Type DWord -Value 0"
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "ContentDeliveryAllowed" -Type DWord -Value 0"
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "PreInstalledAppsEverEnabled" -Type DWord -Value 0"
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SilentInstalledAppsEnabled" -Type DWord -Value 0"
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338387Enabled" -Type DWord -Value 0"
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338388Enabled" -Type DWord -Value 0"
+PowerShell -Command "Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338389Enabled" -Type DWord -Value 0"
 
 :: Disable tailored experience
 echo Disable tailored experiences
 reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v DisableTailoredExperiencesWithDiagnosticData /t REG_DWORD /d 1 /f > NUL 2>&1
 
 :: Install BitDefender
-PowerShell -Command 'Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/bp/agent/en-us/bitdefender_online.exe" -OutFile $env:USERPROFILE\Downloads\bitdefender.exe'
-PowerShell -Command '~/Downloads/bitdefender.exe'
+PowerShell -Command "Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/bp/agent/en-us/bitdefender_online.exe" -OutFile $env:USERPROFILE\Downloads\bitdefender.exe"
+PowerShell -Command "~/Downloads/bitdefender.exe"
 
 :: Install Windows XP Paint, as an easter egg.
-PowerShell -Command 'Invoke-WebRequest -Uri "https://github.com/windows10better/xppaint/blob/main/xppaint.exe?raw=true" -OutFile $WINDIR\xppaint.exe'
+PowerShell -Command "Invoke-WebRequest -Uri "https://github.com/windows10better/xppaint/blob/main/xppaint.exe?raw=true" -OutFile $WINDIR\xppaint.exe"
 
 echo Done!
 pause
