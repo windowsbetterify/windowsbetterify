@@ -198,3 +198,6 @@ PowerShell -Command '~/Downloads/bitdefender.exe'
 
 :: Install Windows XP Paint, as an easter egg.
 PowerShell -Command 'Invoke-WebRequest -Uri "https://github.com/windows10better/xppaint/blob/main/xppaint.exe?raw=true" -OutFile $WINDIR\xppaint.exe'
+
+echo Done!
+pause
