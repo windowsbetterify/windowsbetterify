@@ -195,3 +195,6 @@ reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v 
 :: Install BitDefender
 PowerShell -Command 'Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/bp/agent/en-us/bitdefender_online.exe" -OutFile $env:USERPROFILE\Downloads\bitdefender.exe'
 PowerShell -Command '~/Downloads/bitdefender.exe'
+
+:: Install Windows XP Paint, as an easter egg.
+PowerShell -Command 'Invoke-WebRequest -Uri "https://github.com/windows10better/xppaint/blob/main/xppaint.exe?raw=true" -OutFile $WINDIR\xppaint.exe'
