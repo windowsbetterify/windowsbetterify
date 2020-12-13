@@ -69,8 +69,6 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableActivityFeed
 :: Disable + Delete Tasks
 echo Disabling tasks and Windows Updates...
 schtasks /delete /TN "\Microsoft\Windows\Windows Defender\Windows Defender Scheduled Scan" /f > NUL 2>&1
-net stop wuauserv
-sc config wuauserv start=disabled
 
 :: Installing alternative apps
 echo Installing alternative apps, as well as .NET 3.5
@@ -177,6 +175,10 @@ PowerShell -Command "Get-AppxPackage *AppInstaller* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *photos* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *SkypeApp* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *ContentDeliveryManager* | Remove-AppxPackage"
+
+:: Reinstall app store due to bug
+echo Reinstall Microsoft Store due to Bug...
+Get-AppxPackage -allusers Microsoft.WindowsStore | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 
 :: Disable app suggestions
 echo Disabling app suggestions
