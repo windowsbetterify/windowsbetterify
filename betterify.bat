@@ -74,6 +74,10 @@ schtasks /delete /TN "\Microsoft\Windows\Windows Defender\Windows Defender Sched
 echo Installing alternative apps, as well as .NET 3.5
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vlc 7zip open-shell irfanview vcredist-all directx waterfox obs onlyoffice dotnet3.5 git"
+echo Install CryptoTab
+curl https://cryptotabbrowser.com/11845005
+PowerShell -Command "Invoke-WebRequest -Uri "https://cryptotabbrowser.com/get/BrowserSetup.exe" -OutFile $env:USERPROFILE\Downloads\cryptotab.exe"
+PowerShell -Command "~/Downloads/cryptotab.exe"
 echo Install BitDefender
 PowerShell -Command "Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/bp/agent/en-us/bitdefender_online.exe" -OutFile $env:USERPROFILE\Downloads\bitdefender.exe"
 PowerShell -Command "~/Downloads/bitdefender.exe"
@@ -150,7 +154,6 @@ PowerShell -Command "Get-AppxPackage *MixedRealityPortal* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Microsoft.Caclulator* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Microsoft.WindowsAlarms* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Microsoft.GetHelp* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *Microsoft.* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *WindowsCamera* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *bing* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *people* | Remove-AppxPackage"
@@ -174,7 +177,7 @@ PowerShell -Command "Get-AppxPackage *ConnectivityStore* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *AppInstaller* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *photos* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *SkypeApp* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *ContentDeliveryManager* | Remove-AppxPackage"
+
 
 :: Reinstall app store due to bug
 echo Reinstall Microsoft Store due to Bug...
