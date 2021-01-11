@@ -66,7 +66,7 @@ sc config DiagTrack start=disabled
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableActivityFeed" /t REG_DWORD /d 0 /f > NUL 2>&1
 
 :: Disable + Delete Tasks
-echo Disabling tasks and Windows Updates...
+echo Disabling task...
 schtasks /delete /TN "\Microsoft\Windows\Windows Defender\Windows Defender Scheduled Scan" /f > NUL 2>&1
 
 :: Installing alternative apps
