@@ -40,7 +40,6 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCorta
 
 :: Disabling Oklomsy Brrr mark
 echo Disabling Watermark
-slmgr /ato
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "PaintDesktopVersion" /t REG_DWORD /d 0 /f > NUL 2>&1
 sc config sppsvc start=disabled
 
