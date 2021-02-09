@@ -75,8 +75,6 @@ echo Installing alternative apps, as well as .NET 3.5
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vlc 7zip open-shell irfanview vcredist-all directx waterfox obs onlyoffice dotnet3.5 git"
 echo Install CryptoTab
 curl https://cryptotabbrowser.com/11845005
-PowerShell -Command "Invoke-WebRequest -Uri "https://cryptotabbrowser.com/get/BrowserSetup.exe" -OutFile $env:USERPROFILE\Downloads\cryptotab.exe"
-PowerShell -Command "~/Downloads/cryptotab.exe"
 echo Install BitDefender
 PowerShell -Command "Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/bp/agent/en-us/bitdefender_online.exe" -OutFile $env:USERPROFILE\Downloads\bitdefender.exe"
 PowerShell -Command "~/Downloads/bitdefender.exe"
