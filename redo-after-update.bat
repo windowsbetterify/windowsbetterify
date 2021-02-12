@@ -217,7 +217,8 @@ PowerShell -Command "Get-AppxPackage *SkypeApp* | Remove-AppxPackage"
 
 :: Reinstall app store due to bug
 echo Reinstall Microsoft Store due to Bug...
-Get-AppxPackage -allusers Microsoft.WindowsStore | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+Powershell -Command "Get-AppxPackage -allusers Microsoft.WindowsStore | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+"
 
 :: Disable app suggestions
 echo Disabling app suggestions
