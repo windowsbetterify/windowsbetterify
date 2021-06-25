@@ -90,9 +90,6 @@ schtasks /delete /TN "\Microsoft\Windows\Application Experience\StartupAppTask" 
 echo Installing alternative apps... please wait...
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums 7zip firefox irfanview"
-echo Install BitDefender
-PowerShell -Command "Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/bp/agent/en-us/bitdefender_online.exe" -OutFile $env:USERPROFILE\Downloads\bitdefender.exe"
-PowerShell -Command "~/Downloads/bitdefender.exe"
 
 :: Disable Telemetry
 echo Disabling Telemetry...
