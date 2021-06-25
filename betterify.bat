@@ -1,10 +1,10 @@
 @echo off
-title Windows 10 Betterify by Windows10Better Team
+title Windows Betterify by Windows Better Team
 echo Check for admin...
 openfiles > NUL 2>&1
 if %errorlevel%==0 (
-        echo Admin found. Thank you for using Windows 10 Betterify.
-        echo Version 0.6a
+        echo Admin found. Thank you for using Windows Betterify.
+        echo Version 11.2106-1a
         echo Warning: This action is irreversable!
         echo This will destroy stuff most people might want, including Edge.
         echo And also, this will install FOSS alternatives.
@@ -87,10 +87,9 @@ schtasks /delete /TN "\Microsoft\Windows\Application Experience\StartupAppTask" 
 
 
 :: Installing alternative apps
-echo Installing alternative apps, as well as .NET 3.5
+echo Installing alternative apps... please wait...
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
-@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums vlc 7zip open-shell irfanview vcredist-all directx waterfox obs onlyoffice dotnet3.5 git"
-curl https://cryptotabbrowser.com/11845005
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums 7zip firefox irfanview"
 echo Install BitDefender
 PowerShell -Command "Invoke-WebRequest -Uri "https://download.bitdefender.com/windows/bp/agent/en-us/bitdefender_online.exe" -OutFile $env:USERPROFILE\Downloads\bitdefender.exe"
 PowerShell -Command "~/Downloads/bitdefender.exe"
@@ -242,13 +241,12 @@ PowerShell -Command 'Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\Cu
 echo Disable tailored experiences
 reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v DisableTailoredExperiencesWithDiagnosticData /t REG_DWORD /d 1 /f > NUL 2>&1
 
-:: Install Windows XP Paint, as an easter egg.
-PowerShell -Command "Invoke-WebRequest -Uri "https://github.com/windows10better/xppaint/blob/main/xppaint.exe?raw=true" -OutFile $WINDIR\xppaint.exe"
-
 :: Disable SmartScreen (imo its scareware, because it falsely detects some apps!)
 echo Disabling SmartScreen
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v SmartScreenEnabled /t REG_SZ /d "Off" /f > NUL 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" /v ContentEvaluation /t REG_DWORD /d 0 /f > NUL 2>&1
 
 echo Done!
+echo PLEASE INSTALL AN ANTIVIRUS OF YOUR CHOICE.
+echo I personally like BitDefender, but it takes quite a bit of RAM!
 pause
