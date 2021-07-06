@@ -211,6 +211,60 @@ PowerShell -Command "Get-AppxPackage *photos* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *SkypeApp* | Remove-AppxPackage"
 
 
+:: Reinforcements for 20H1 and above
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.549981C3F5F10* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.BingWeather* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.DesktopAppInstaller* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.GetHelp* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.Getstarted* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.Microsoft3DViewer* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.MicrosoftEdge.Stable* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.MixedReality.Portal* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.MSPaint* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.Office.OneNote* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.People* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.Print3D* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.ScreenSketch* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.SkypeApp* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.VP9VideoExtensions* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.Wallet* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.WebMediaExtensions* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.WebpImageExtension* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.Windows.Photos* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.WindowsAlarms* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.WindowsCalculator* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.WindowsCamera* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers microsoft.windowscommunicationsapps* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.WindowsFeedbackHub* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.WindowsMaps* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.WindowsSoundRecorder* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.YourPhone* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.ZuneMusic* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -allusers Microsoft.ZuneVideo* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *ActiproSoftwareLLC* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers Microsoft.BingNews* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *CandyCrush* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *Duolingo* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *EclipseManager* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *Facebook* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *king.com.FarmHeroesSaga* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *Flipboard* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *HiddenCityMysteryofShadows* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *Plex* | Remove-AppxPackage"
+PowerShell -Command "Get-AppxPackage -AllUsers *Wunderlist* | Remove-AppxPackage"
+
+:: Remove Microsoft Edge
+echo Removing Edge...
+PowerShell -Command "cd 'C:\Program Files (x86)\Microsoft\Edge\Application\*\Installer\'; .\setup.exe --uninstall --force-uninstall --system-level"
+
+:: Installing Firefox and 7zip
+echo Installing Firefox and 7zip, great FOSS alternative to Edge, and Microsoft Default Unzipper or WinRAR.
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums 7zip firefox"
+
 :: Reinstall app store due to bug
 echo Reinstall Microsoft Store due to Bug...
 Powershell -Command 'Get-AppxPackage -allusers Microsoft.WindowsStore | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}'
