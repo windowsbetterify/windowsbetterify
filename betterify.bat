@@ -4,7 +4,7 @@ echo Check for admin...
 openfiles > NUL 2>&1
 if %errorlevel%==0 (
         echo Admin found. Thank you for using Windows Betterify.
-        echo Version 11.2107-1a
+        echo Version 11.2107-2a
         echo Warning: This action is irreversable!
         echo This will destroy stuff most people might want, including Edge.
         echo And also, this will install FOSS alternatives.
@@ -85,7 +85,7 @@ schtasks /delete /TN "\Microsoft\Windows\Application Experience\StartupAppTask" 
 echo Disabling Telemetry...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f > NUL 2>&1
-PowerShell -Command "Disable-ScheduledTask -TaskName 'Microsoft\Windows\Application Experience\ProgramDataUpdater" | Out-Null"
+PowerShell -Command "Disable-ScheduledTask -TaskName 'Microsoft\Windows\Application Experience\ProgramDataUpdater' | Out-Null"
 PowerShell -Command "Disable-ScheduledTask -TaskName 'Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector' | Out-Null"
 PowerShell -Command "Disable-ScheduledTask -TaskName 'Microsoft\Windows\Customer Experience Improvement Program\UsbCeip' | Out-Null"
 PowerShell -Command "Disable-ScheduledTask -TaskName 'Microsoft\Windows\Customer Experience Improvement Program\Consolidator' | Out-Null"
