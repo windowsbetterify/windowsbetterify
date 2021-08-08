@@ -143,6 +143,7 @@ regedit /s security-updates-only.reg
 
 :: Editing HOSTS
 echo Editing HOSTS
+attrib -R %WINDIR%\System32\drivers\etc\hosts
 echo. > %WINDIR%\System32\drivers\etc\hosts
 echo 0.0.0.0	ads.msn.com >> %WINDIR%\System32\drivers\etc\hosts
 echo 0.0.0.0	ads.msn.com >> %WINDIR%\System32\drivers\etc\hosts
