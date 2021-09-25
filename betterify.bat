@@ -110,7 +110,6 @@ PowerShell -Command "Disable-ScheduledTask -TaskName 'Microsoft\Windows\Applicat
 PowerShell -Command "Disable-ScheduledTask -TaskName 'Microsoft\Windows\Application Experience\ProgramDataUpdater' | Out-Null"
 PowerShell -Command "Disable-ScheduledTask -TaskName 'Microsoft\Windows\Autochk\Proxy' | Out-Null"
 
-
 :: RegEdits
 echo Applying Registry Edits
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" /v DontSendAdditionalData /t REG_DWORD /d 1 /f > NUL 2>&1
@@ -219,7 +218,6 @@ PowerShell -Command "Get-AppxPackage *WindowsAlarms* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *3DBuilder* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *WindowsSoundRecorder* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *CommsPhone* | Remove-AppxPackage"
-PowerShell -Command "Get-AppxPackage *ConnectivityStore* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *AppInstaller* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *photos* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *SkypeApp* | Remove-AppxPackage"
@@ -278,10 +276,6 @@ PowerShell -Command "cd 'C:\Program Files (x86)\Microsoft\Edge\Application\*\Ins
 echo Installing LibreWolf and 7zip, great FOSS alternative to Edge, and Microsoft Default Unzipper or WinRAR.
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums 7zip librewolf"
-
-:: Reinstall app store due to bug
-echo Reinstall Microsoft Store due to Bug...
-Powershell -Command 'Get-AppxPackage -allusers Microsoft.WindowsStore | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}'
 
 :: Disable app suggestions
 echo Disabling app suggestions
