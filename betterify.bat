@@ -160,7 +160,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v "DisableVoice" 
 
 :: Only use security updates
 echo Disabling all updates except security updates...
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/windows10better/windows-betterify/main/security-updates-only.reg -OutFile security-updates-only.reg
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/security-updates-only.reg -OutFile security-updates-only.reg
 regedit /s security-updates-only.reg
 
 :: Editing HOSTS
