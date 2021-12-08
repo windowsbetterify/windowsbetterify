@@ -43,6 +43,7 @@ echo Disabling Watermark
 sc config sppsvc start=disabled
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "PaintDesktopVersion" /t REG_DWORD /d 0 /f > NUL 2>&1
 schtasks /delete /TN "\Microsoft\Windows\Clip\License Validation" /f > NUL 2>&1
+KMS_VL_ALL_AIO.abbodi1406.cmd /s
 
 ::Add UTC Time
 echo Change to UTC time
