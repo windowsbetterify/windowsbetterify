@@ -4,7 +4,7 @@ echo Check for admin...
 openfiles > NUL 2>&1
 if %errorlevel%==0 (
         echo Admin found. Thank you for using Windows Betterify.
-        echo Version 11.2107-2a
+        echo Version 11.2112-01a
         echo Warning: This action is irreversable!
         echo This will destroy stuff most people might want, including Edge.
         echo And also, this will install FOSS alternatives.
@@ -38,7 +38,7 @@ rename "C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy" "C:\Windo
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "SearchboxTaskbarMode" /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d 0 /f > NUL 2>&1
 
-:: Disabling Oklomsy Brrr mark
+:: Disabling Mr Brrr mark
 echo Disabling Watermark
 sc config sppsvc start=disabled
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "PaintDesktopVersion" /t REG_DWORD /d 0 /f > NUL 2>&1
