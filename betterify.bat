@@ -44,10 +44,6 @@ sc config sppsvc start=disabled
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "PaintDesktopVersion" /t REG_DWORD /d 0 /f > NUL 2>&1
 schtasks /delete /TN "\Microsoft\Windows\Clip\License Validation" /f > NUL 2>&1
 
-::Add UTC Time
-echo Change to UTC time
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /t REG_DWORD /d 1 /f > NUL 2>&1
-
 :: Disable crap services and SMBv1
 echo Disable crap services and SMBv1, therefore lowering chance people on this PC would get an EternalBlue virus.
 sc config diagtrack start=disabled
