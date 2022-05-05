@@ -16,10 +16,6 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Control Panel\Accessibility\Keyboard Response]
 "Flags"="2"
 
-; TURN OFF Use my sign-in info to automatically finish setting up my device after an update or restart
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
-"DisableAutomaticRestartSignOn"=dword:00000001
-
 ; TURN OFF Automatically update maps
 [HKEY_LOCAL_MACHINE\SYSTEM\Maps]
 "AutoUpdateEnabled"=dword:00000000
@@ -87,13 +83,6 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Attachments]
 "SaveZoneInformation"=dword:00000001
 
-; Show seconds in taskbar clock
-[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
-"ShowSecondsInSystemClock"=dword:00000001
-
-; BIG BIG thumbnails in taskbar
-[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband]
-"MinThumbsizePx"=dword:000001f4
 
 ; Print screen now start screen snip.
 [HKEY_CURRENT_USER\Control Panel\Keyboard]
@@ -127,14 +116,6 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Search\CurrentPolicies\DefaultExcludedPaths]
 "%SYSTEMDRIVE%\Users"="%SYSTEMDRIVE%\Users"
-
-; Remove all start Menu Tiles, and lock it.
-; StartLayoutFile value is "C:\Windows\StartLayout.xml"
-[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer]
-"LockedStartLayout"=dword:00000001
-"StartLayoutFile"=hex(2):43,00,3a,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,\
-  73,00,5c,00,53,00,74,00,61,00,72,00,74,00,4c,00,61,00,79,00,6f,00,75,00,74,\
-  00,2e,00,78,00,6d,00,6c,00,00,00
 
 ; Remove "Browse the web with Microsoft Edge" popup on first logon
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager]
