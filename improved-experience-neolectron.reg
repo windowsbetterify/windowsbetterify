@@ -20,14 +20,6 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SYSTEM\Maps]
 "AutoUpdateEnabled"=dword:00000000
 
-;REMOVE Startup Apps
-[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
-[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run]
-
-; TURN OFF Ease Of Access settings
-[HKEY_CURRENT_USER\Control Panel\Accessibility\HighContrast]
-"Flags"="4218"
-
 [HKEY_CURRENT_USER\Control Panel\Accessibility\MouseKeys]
 "Flags"="130"
 "MaximumSpeed"="39"
