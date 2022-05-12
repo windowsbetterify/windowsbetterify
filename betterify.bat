@@ -155,12 +155,12 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v "DisableVoice" 
 
 :: Only use security updates
 echo Disabling all updates except security updates...
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/security-updates-only.reg -OutFile security-updates-only.reg
+curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/security-updates-only.reg" -O security-updates-only.reg
 regedit /s security-updates-only.reg
 
 :: Better UX
 echo Better UX by neolectron
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/improved-experience-neolectron.reg -OutFile improved-experience-neolectron.reg
+curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/improved-experience-neolectron.reg" -O security-updates-only.re
 regedit /s improved-experience-neolectron.reg
 
 
@@ -314,6 +314,11 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "N
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v LaunchTo /t REG_DWORD /d 1 /f > NUL 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v HideFileExt /t REG_DWORD /d 0 /f > NUL 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Hidden /t REG_DWORD /d 1 /f > NUL 2>&1
+
+::Run O&O ShutUp 10
+curl "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -O OOSU10.exe
+curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/ooshutup10.cfg" -O ooshutup10.cfg
+OOSU10.exe ooshutup10.cfg /quiet
 
 echo Done! Enjoy the rest of your day.
 pause
