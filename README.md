@@ -1,5 +1,5 @@
 # Windows Betterify
-Make Windows great again.
+Make Windows great again. It is also suggested to run [WinAero Tweaker](https://winaero.com/winaero-tweaker/) afterwards.
 
 ## Known Bugs
 * None yet
