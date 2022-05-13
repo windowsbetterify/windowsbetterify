@@ -316,11 +316,13 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Hi
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Hidden /t REG_DWORD /d 1 /f > NUL 2>&1
 
 ::Run O&O ShutUp 10
+echo "Running ShutUp10++"
 curl "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -O OOSU10.exe
 curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/ooshutup10.cfg" -O ooshutup10.cfg
 OOSU10.exe ooshutup10.cfg /quiet
 
 ::Get lite theme
+echo "Get lite theme"
 curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/aerolite.theme" -O C:\Windows\Resources\Themes\aerolite.theme
 curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/aerolite.msstyles" -O C:\Windows\Resources\Themes\aero\aerolite.msstyles
 echo Done! Enjoy the rest of your day.
