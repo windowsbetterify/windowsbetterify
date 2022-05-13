@@ -321,5 +321,10 @@ curl "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -O OOSU10.exe
 curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/ooshutup10.cfg" -O ooshutup10.cfg
 OOSU10.exe ooshutup10.cfg /quiet
 
+::Change default TTL for unlimited tethering
+echo Changing TTL for limitless tethering on an unlimited plan...
+netsh int ipv4 set glob defaultcurhoplimit=65
+netsh int ipv6 set glob defaultcurhoplimit=65
+
 echo Done! Enjoy the rest of your day.
 pause
