@@ -9,5 +9,4 @@ Make Windows great again.
 That's because it was heavily inspired by Windows AME. Except this is meant for everyday users! :-)
 
 ## I need a shortened URL for sharing this tool with my friends!
-Redirect to main script in a zip file: https://git.io/JzMfg
-Redirect to GitHub repo page: https://git.io/JzMf2
+Redirect to script: https://tinyurl.com/bds7ar5k
