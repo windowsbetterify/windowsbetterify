@@ -4,7 +4,7 @@ echo Check for admin...
 openfiles > NUL 2>&1
 if %errorlevel%==0 (
         echo Admin found. Thank you for using Windows Betterify.
-        echo Version 11.2112-01a
+        echo Version 11.2205-01a
         echo Warning: This action is irreversable!
         echo If you do not want this, press the red x NOW. Otherwise...
         pause
