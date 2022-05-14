@@ -24,6 +24,7 @@ if %errorlevel%==0 (
 
 cls
 
+cd %dp0
 curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/betterify.ps1" -o betterify.ps1
 powershell -ExecutionPolicy Bypass -File betterify.ps1
 
