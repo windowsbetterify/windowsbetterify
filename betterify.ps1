@@ -160,9 +160,9 @@ attrib +R %WINDIR%\System32\drivers\etc\hosts
 :: Disable Hibernation, to make NTFS available in other OSes
 powercfg /h off
 
-:: Deleting all apps except store and XBOX
-echo Deleting all bad apps except store and XBOX
-Get-AppxPackage -AllUsers | where-object {$_.name –notlike "*store*"} | where-object {$_.name –notlike "*xbox*"} | where-object {$_.name –notlike "*edge*"}  | where-object {$_.name –notlike "*packageman*"} | Remove-AppxPackage
+:: Deleting all apps except store
+echo Deleting all bad apps except store
+Get-AppxPackage -AllUsers | where-object {$_.name –notlike "*store*"} | Remove-AppxPackage
 
 :: Disable app suggestions
 echo Disabling app suggestions
