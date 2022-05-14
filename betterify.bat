@@ -24,10 +24,8 @@ if %errorlevel%==0 (
 
 cls
 
-PowerShell -command "Set-ExecutionPolicy Bypass –Scope LocalMachine"
 curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/betterify.ps1" -O betterify.ps1
-PowerShell -command "./betterify.ps1"
-PowerShell -command "Set-ExecutionPolicy Restricted –Scope LocalMachine"
+PowerShell -ExecutionPolicy Bypass -command "./betterify.ps1"
 
 echo Done! Enjoy the rest of your day.
 pause
