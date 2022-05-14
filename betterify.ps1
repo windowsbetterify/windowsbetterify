@@ -130,12 +130,12 @@ reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE' /v 'DisableVoice' 
 
 :: Only use security updates
 echo Disabling all updates except security updates...
-curl 'https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/security-updates-only.reg' -O security-updates-only.reg
+curl 'https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/security-updates-only.reg' -o security-updates-only.reg
 regedit /s security-updates-only.reg
 
 :: Better UX
 echo Better UX by neolectron
-curl 'https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/improved-experience-neolectron.reg' -O security-updates-only.re
+curl 'https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/improved-experience-neolectron.reg' -o security-updates-only.re
 regedit /s improved-experience-neolectron.reg
 
 
@@ -220,8 +220,8 @@ reg add 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' /v Hi
 
 ::Run O&O ShutUp 10
 echo 'Running ShutUp10++'
-curl 'https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe' -O OOSU10.exe
-curl 'https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/ooshutup10.cfg' -O ooshutup10.cfg
+curl 'https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe' -o OOSU10.exe
+curl 'https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/ooshutup10.cfg' -o ooshutup10.cfg
 ./OOSU10.exe ooshutup10.cfg /quiet
 
 ::Change default TTL for unlimited tethering
