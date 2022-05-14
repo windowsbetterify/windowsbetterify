@@ -198,9 +198,7 @@ powercfg /h off
 
 :: Deleting all apps except store and XBOX
 echo Deleting all bad apps except store and XBOX
-PowerShell -Command "Get-AppxPackage -AllUsers | where-object {$_.name –notlike '*store*'} | where-object {$_.name –notlike '*xbox*'} | where-object {$_.name –notlike '*edge*'}  | where-object {$_.name –notlike '*packageman*'} | Remove-AppxPackage"
-
-
+powershell -command "Get-AppxPackage -AllUsers | where-object {$_.name -notlike '*store*'} | where-object {$_.name -notlike '*Microsoft.WindowsCalculator*'} | where-object {$_.name -notlike '*Microsoft.Windows.Photos*'}  | where-object {$_.name -notlike '*xbox*'} | Remove-AppxPackage"
 
 :: Reinforcements
 PowerShell -Command "Get-AppxPackage -allusers Microsoft.549981C3F5F10* | Remove-AppxPackage"
