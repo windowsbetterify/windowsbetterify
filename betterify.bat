@@ -25,7 +25,7 @@ if %errorlevel%==0 (
 cls
 
 curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/betterify.ps1" -O betterify.ps1
-PowerShell -ExecutionPolicy Bypass -command "./betterify.ps1"
+powershell -ExecutionPolicy Bypass -file betterify.ps1
 
 echo Done! Enjoy the rest of your day.
 pause
