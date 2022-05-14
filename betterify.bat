@@ -26,7 +26,7 @@ cls
 
 cd %~dp0
 curl "https://raw.githubusercontent.com/windowsbetterify/windowsbetterify/main/betterify.ps1" -o betterify.ps1
-powershell -ExecutionPolicy Bypass -File betterify.ps1
+powershell -ExecutionPolicy Bypass -ExecutionPolicy Bypass -File betterify.ps1
 
 echo Done! Enjoy the rest of your day.
 pause
