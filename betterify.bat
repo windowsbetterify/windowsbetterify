@@ -196,11 +196,6 @@ attrib +R %WINDIR%\System32\drivers\etc\hosts
 :: Disable Hibernation, to make NTFS available in other OSes
 powercfg /h off
 
-:: Deleting all apps except store and XBOX
-echo Deleting all bad apps except store and XBOX
-powershell -command "Get-AppxPackage -AllUsers | where-object {$_.name -notlike '*store*'} | where-object {$_.name -notlike '*Microsoft.WindowsCalculator*'} | where-object {$_.name -notlike '*Microsoft.Windows.Photos*'}  | where-object {$_.name -notlike '*xbox*'} | Remove-AppxPackage"
-powershell -command "Get-AppxProvisionedPackage -online | where-object {$_.name -notlike '*store*'} | where-object {$_.name -notlike '*Microsoft.WindowsCalculator*'} | where-object {$_.name -notlike '*Microsoft.Windows.Photos*'}  | where-object {$_.name -notlike '*xbox*'} | Remove-AppxProvisionedPackage -online"
-
 :: Reinforcements
 PowerShell -Command "Get-AppxPackage -allusers Microsoft.549981C3F5F10* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage -allusers Microsoft.BingWeather* | Remove-AppxPackage"
@@ -297,10 +292,6 @@ reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHeal
 reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run" /v "SecurityHealth" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments" /v SaveZoneInformation /t REG_DWORD /d 1 /f > NUL 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments" /v SaveZoneInformation /t REG_DWORD /d 1 /f > NUL 2>&1
-
-:: Clean up control panel
-echo Cleaning control panel...
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v SettingsPageVisibility /t REG_SZ /d "showonly:display;nightlight;sound;notifications;quiethours;powersleep;batterysaver;tabletmode;multitasking;clipboard;remote-desktop;about;bluetooth;connecteddevices;printers;mousetouchpad;devices-touchpad;typing;pen;autoplay;usb;network-status;network-cellular;network-wifi;network-wificalling;network-wifisettings;network-ethernet;network-dialup;network-vpn;network-airplanemode;network-mobilehotspot;datausage;network-proxy;personalization-background;personalization-start;fonts;colors;lockscreen;themes;taskbar;defaultapps;videoplayback;startupapps;dateandtime;regionlanguage;regionformatting;gaming;gaming-gamemode;gaming-broadcasting;gaming-gamedvr;easeofaccess-display;easeofaccess-colorfilter;easeofaccess-audio;easeofaccess-easeofaccess-narrator;easeofaccess-magnifier;easeofaccess-highcontrast;easeofaccess-closedcaptioning;yourinfo;emailandaccounts;workplace;signinoptions;speech;easeofaccess-speechrecognition;easeofaccess-eyecontrol;easeofaccess-keyboard;easeofaccess-mouse;cortana-windowssearch;search-moredetails;windowsupdate;windowsupdate-action;windowsupdate-history;windowsupdate-restartoptions;windowsupdate-options;windowsdefender;recovery;activation;holographic;holographic-audio;privacy;privacy-location;privacy-webcam;privacy-microphone;privacy-notifications;privacy-speechtyping;privacy-accountinfo;privacy-contacts;privacy-calandar;privacy-callhistory;privacy-email;privacy-tasks;privacy-messaging;privacy-radios;privacy-customdevices;privacy-feedback;privacy-backgroundapps;privacy-appdiagnostics;otherusers;sync;optionalfeatures;appsfeatures" /f > NUL 2>&1
 
 :: Set up explorer
 echo Setting up explorer
